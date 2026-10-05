@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #512da8,
+                    #5c6bc0
+                );
+
+            padding: 20px;
+        }
+
+
+        .dashboard {
+
+            width: 500px;
+
+            max-width: 100%;
+
+            background: white;
+
+            padding: 50px;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 40px rgba(0,0,0,.2);
+        }
+
+
+        .dashboard h1 {
+
+            color: #512da8;
+
+            margin-bottom: 15px;
+        }
+
+
+        .dashboard p {
+
+            color: #555;
+
+            line-height: 1.6;
+
+            margin-bottom: 30px;
+        }
+
+
+        .dashboard button {
+
+            border: none;
+
+            background: #512da8;
+
+            color: white;
+
+            padding: 12px 30px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+
+        .dashboard button:hover {
+
+            background: #3f2187;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="dashboard">
+
+        <h1 id="welcome">
+            Welcome!
+        </h1>
+
+
+        <p>
+            You have successfully logged in.
+            Welcome to your dashboard.
+        </p>
+
+
+        <button id="logoutBtn">
+            Logout
+        </button>
+
+    </div>
+
+
+    <script>
+
+        const user =
+            JSON.parse(
+                localStorage.getItem("loggedInUser")
+            );
+
+
+        /* Protect dashboard */
+
+        if (!user) {
+
+            window.location.href =
+                "index.html";
+
+        } else {
+
+            document.getElementById("welcome")
+                .textContent =
+                "Welcome, " + user.name + "!";
+
+        }
+
+
+        /* Logout */
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener("click", () => {
+
+                localStorage.removeItem(
+                    "loggedInUser"
+                );
+
+                window.location.href =
+                    "index.html";
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>
